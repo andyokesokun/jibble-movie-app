@@ -1,30 +1,91 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div className="App">
+    <header class="App-header">
+      <p class="display-6 w-fit float-left">Movie Hub</p>
+      <nav class="fit-content fit float-left mt-3 ms-3">
+        <router-link class="menu-link" to="/"><MenuIcon class="icon"/> Home</router-link> 
+        <router-link class="menu-link" to="/about"><CardsHeartIcon class="icon" /> Favorite</router-link>
+      </nav>
+
+      <div class="float-right mt-2 me-3">
+          <MagnifyIcon class="icon me-1"  />
+          <input
+            class="fit-content"
+            type="text"
+            placeholder="Movie title"
+          />
+      </div>
+
+    </header>
+
+    <section class="container w-80 m-auto mb-4">
+
+    </section>
+
+    <section class="container w-80  m-auto">
+      <router-view />
+    </section>
+  </div>
 </template>
+<script setup lang="ts">
+    import MenuIcon from 'vue-material-design-icons/Menu.vue';
+    import CardsHeartIcon from 'vue-material-design-icons/CardsHeart.vue';
+    import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+</script>
 
-nav {
-  padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+<style lang="sass">
+ p
+   margin-bottom: 0
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+ 
+.App-header 
+    background-color:$app-bar-bg-color
+    overflow: hidden
+    color: white
+    padding:
+       top: 5px
+       left: 20px
+       right: 20px
+       bottom: 5px
+
+    margin-bottom: 5rem
+
+.App-link 
+     color: $app-link-color
+
+a.menu-link
+        text-decoration: none
+        color: $menu-link-color
+        margin: $link-margin
+
+a.menu-link
+  .icon
+    width: .1rem
+    color: $app-link-color
+
+a.menu-link:hover
+      color: $app-link-hover-color
+
+.activeNav
+   background: black
+   border-radius: 20%
+
+.activeNav
+     a
+      color: white
+
+.nav-link 
+    color: $link-color
+
+.nav-link:focus
+      color: white
+
+.nav-link:hover
+       color:  #525252
+
+.lead 
+    font-size: .8rem
+    font-weight: 300
 </style>
