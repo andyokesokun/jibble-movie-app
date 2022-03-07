@@ -1,8 +1,8 @@
 import MovieListModel from "@/models/MoviesListModel"
 import MovieModel from "@/models/MovieModel"
 import MovieService from "@/services/MovieService"
-  import { VuexModule,  Module,  Mutation,  Action, MutationAction, getModule } from  "vuex-module-decorators"
-  import store from "../store"
+import { VuexModule,  Module,  Mutation,  Action, MutationAction, getModule } from  "vuex-module-decorators"
+import store from "../store"
 import { PageData } from "@/models/PaginationModel"
 
  @Module({ name: 'Mmodel', dynamic: true, store  })
@@ -13,7 +13,7 @@ import { PageData } from "@/models/PaginationModel"
      favouriteMoveList :  Array<MovieModel> = []
      previousPage: number = 1
      hasData: boolean = false 
-     searchValue : string  = ""
+     searchValue! : string 
     
      @Mutation
      setMovies(movies: MovieListModel){
@@ -32,8 +32,18 @@ import { PageData } from "@/models/PaginationModel"
 
      }
 
+     @Mutation
+     setSearchKey(value: string){
+         this.searchValue = value
+     }
+
+       @Action({commit:'setSearchKey'})
+      searchMovies(value: string){   
+        return  value
+      }
+
      @Action({commit:'setMovies'})
-     async AddMovies(page?: number){   
+     async addMovies(page?: number){   
         return  await  MovieService.fetchMovies(page);
      }
 
@@ -55,13 +65,13 @@ import { PageData } from "@/models/PaginationModel"
      async getMoviesInPage(pageData: PageData){ 
          var data= this.pagedMovies(pageData);
          if(data.length  == 0){
-            await this.AddMovies(pageData.pageNumber)
+            await this.addMovies(pageData.pageNumber)
             data =  this.pagedMovies(pageData);
          }
 
          return  data;          
       }
-      
+
 
     get GetMovies () {
         return this.movieList.data
