@@ -17,19 +17,21 @@
 <script setup lang="ts">
     import { trimString, imdbIDUrl } from '@/utils'
     import { PropType, ref } from '@vue/runtime-core'
-    import {MovieModel} from '../models/MovieModel'
+    import MovieModel from '../models/MovieModel'
     import CardsHeartIcon from 'vue-material-design-icons/CardsHeart.vue';
+    import MovieModule from '@/store/MovieModule'
     
     const {movie}  =  defineProps({
         movie : Object as PropType<MovieModel>
     })
     
-    const isliked = ref(false)
+    const isliked = ref(movie?.liked ?? false)
 
     const title = showTitle()
     
     function  toggle () {
           isliked.value =  !isliked.value 
+          MovieModule.AddToFavourite(movie!.imdbID)
       
     }
 
@@ -38,6 +40,8 @@
               return trimString(movie.Title,30 )
         }
     }
+
+    
         
 
 </script>

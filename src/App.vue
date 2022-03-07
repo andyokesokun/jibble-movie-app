@@ -4,7 +4,7 @@
       <p class="display-6 w-fit float-left">Movie Hub</p>
       <nav class="fit-content fit float-left mt-3 ms-3">
         <router-link class="menu-link" to="/"><MenuIcon class="icon"/> Home</router-link> 
-        <router-link class="menu-link" to="/about"><CardsHeartIcon class="icon" /> Favorite</router-link>
+        <router-link class="menu-link" to="/favourites"><CardsHeartIcon class="icon" /> Favorite</router-link>
       </nav>
 
       <div class="float-right mt-2 me-3">
@@ -18,9 +18,6 @@
 
     </header>
 
-    <section class="container w-80 m-auto mb-4">
-
-    </section>
 
     <section class="container w-80  m-auto">
       <router-view />

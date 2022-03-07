@@ -2,10 +2,6 @@ p {
   margin-bottom: 0;
 }
 
-.container {
-  display: flex;
-}
-
 .w-fit {
   width: fit-content;
 }
