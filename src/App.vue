@@ -11,6 +11,7 @@
           <MagnifyIcon class="icon me-1"  />
           <input
             class="fit-content"
+            @keyup="onSearch"
             type="text"
             placeholder="Movie title"
           />
@@ -28,6 +29,14 @@
     import MenuIcon from 'vue-material-design-icons/Menu.vue';
     import CardsHeartIcon from 'vue-material-design-icons/CardsHeart.vue';
     import MagnifyIcon from 'vue-material-design-icons/Magnify.vue';
+    import MovieModule from './store/MovieModule';
+import { onMounted } from '@vue/runtime-core';
+
+   const onSearch = (event: Event) =>{
+        const value = (event.target as HTMLInputElement).value
+         MovieModule.searchMovies(value)
+    }
+
 
 </script>
 

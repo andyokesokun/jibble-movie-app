@@ -26,7 +26,7 @@ import {PageData} from '@/models/PaginationModel'
    }
   
     onMounted( async () => {
-        await MovieModule.AddMovies(); 
+        await MovieModule.addMovies(); 
     })
 
 </script>
