@@ -26,7 +26,7 @@ import {PageData} from '@/models/PaginationModel'
    const currentPage = computed(() => MovieModule.currentPage);
 
    const onPageChanged = (data: PageData) => {
-        console.log(data.pageNumber)
+        (data.pageNumber)
    }
   
     onMounted( async () => {

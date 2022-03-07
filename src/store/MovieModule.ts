@@ -3,6 +3,7 @@ import MovieModel from "@/models/MovieModel"
 import MovieService from "@/services/MovieService"
   import { VuexModule,  Module,  Mutation,  Action, MutationAction, getModule } from  "vuex-module-decorators"
   import store from "../store"
+import { PageData } from "@/models/PaginationModel"
 
  @Module({ name: 'Mmodel', dynamic: true, store  })
  
@@ -32,8 +33,8 @@ import MovieService from "@/services/MovieService"
      }
 
      @Action({commit:'setMovies'})
-     async AddMovies(){   
-        return  await  MovieService.fetchMovies();
+     async AddMovies(page?: number){   
+        return  await  MovieService.fetchMovies(page);
      }
 
      @Mutation
@@ -50,8 +51,26 @@ import MovieService from "@/services/MovieService"
          return this.GetMovies.find( x=> x.imdbID == imdbID  )   
       }
 
+     
+     async getMoviesInPage(pageData: PageData){ 
+         var data= this.pagedMovies(pageData);
+         if(data.length  == 0){
+            await this.AddMovies(pageData.pageNumber)
+            data =  this.pagedMovies(pageData);
+         }
+
+         return  data;          
+      }
+      
+
     get GetMovies () {
         return this.movieList.data
+    }
+
+    pagedMovies(pageData: PageData){
+        
+        return this.GetMovies.filter( (x,index) => index >=  pageData.dataStartPos 
+                                         &&  index <=  pageData.dataEndPos )
     }
     
  
