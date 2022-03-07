@@ -4,13 +4,13 @@ import { request } from "@/utils";
 class MovieService {
 
 
-    static  async fetchMovies(page?: string) : Promise<MovieListModel>{
+    static  async fetchMovies(page?: number) : Promise<MovieListModel>{
          
         var url = process.env.VUE_APP_MOVIES_BASE_URL as string 
         var queryObj = new URLSearchParams();
        
         if(page){
-            queryObj.append(page, page)
+            queryObj.append('page', page.toString())
         }
     
  
