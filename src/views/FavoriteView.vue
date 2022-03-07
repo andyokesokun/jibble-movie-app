@@ -1,9 +1,14 @@
 <template>
-    <MovieList :movies ="movies" />
-    <div v-if="totalItems > 0" class="mt-4">
-      <Pagination @pageChanged ="onPageChanged" :currentPage="currentPage" :totalItems="totalItems" 
-                   :itemsPerPage ="showPerPage" :maxVisible ="10"
-                    />
+     <div v-if='movies.length == 0'>
+        No favourites
+     </div>
+      <MovieList :movies ="movies" />
+  
+      <div v-if="totalItems > showPerPage" class="mt-4">
+        <Pagination @pageChanged ="onPageChanged" :currentPage="currentPage" :totalItems="totalItems" 
+                    :itemsPerPage ="showPerPage" :maxVisible ="10"
+                      />
+ 
     </div>
 </template>
 
@@ -15,8 +20,8 @@ import { PropType, ref } from '@vue/runtime-core'
 import {computed,onMounted} from 'vue'  
 import {PageData} from '@/models/PaginationModel'
 
-   const movies = computed(() => MovieModule.GetMovies);
-   const totalItems = computed(() => MovieModule.totalItems);
+   const movies = computed(() => MovieModule.favouriteMoveList);
+   const totalItems = computed(() =>  MovieModule.favouriteMoveList.length);
    const showPerPage = computed(() => MovieModule.showPerPage);
    const currentPage = computed(() => MovieModule.currentPage);
 

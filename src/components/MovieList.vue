@@ -10,16 +10,14 @@
 
 <script setup lang="ts">
 
-import MovieModule from '@/store/MovieModule'
-import {computed, onMounted } from 'vue'
 import Movie from './Movie.vue'
+import { PropType, ref } from '@vue/runtime-core'
+import MovieModel  from '@/models/MovieModel';
 
-
-   const movies = computed(() => MovieModule.GetMovies);
+   const {movies} = defineProps({
+      movies: Object as PropType<Array<MovieModel> >
+   });
   
-    onMounted( async () => {
-        await MovieModule.AddMovies(); 
-    })
 
 </script>
 
